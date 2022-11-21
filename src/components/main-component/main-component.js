@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LoginPage from "../login-page/login";
+import Registration from "../registration/registration";
 import WelcomePage from "../welcome-page/welcome-page";
 
 const MainComponent = () => {
@@ -9,6 +10,7 @@ const MainComponent = () => {
         <Routes>
           <Route path="/" element={<WelcomePage />} />
           <Route path="/Login" element ={<LoginPage/>}/>
+          <Route path="/Registration" element={<Registration/>}/>
         </Routes>
       </Router>
     </div>
