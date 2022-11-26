@@ -1,6 +1,5 @@
 import "../login-page/style.css";
 import Header from "../ui/header/header";
-import Footer from "../ui/footer/footer";
 
 const LoginPage = () => {
   return (
@@ -15,7 +14,6 @@ const LoginPage = () => {
       <p>Немає облікового запису?</p>
       <a className="login-link" href="/Registration">Зареєструйся вже!</a>
       </form>
-      <Footer/>
     </div>
   );
 };

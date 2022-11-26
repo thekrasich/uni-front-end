@@ -1,3 +1,4 @@
+import { ExpandMore } from "@mui/icons-material";
 import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -39,7 +40,7 @@ const FacultiesPage = () => {
       <Header />
       {faculties.map(({ id, name, departments }) => (
         <Accordion>
-          <AccordionSummary id={'1'} aria-controls="panel1content">
+          <AccordionSummary id={'1'} aria-controls="panel1content" expandIcon ={ <ExpandMore/> }>
             {name}
           </AccordionSummary>
           <AccordionDetails>
