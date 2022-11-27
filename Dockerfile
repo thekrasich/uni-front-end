@@ -1,20 +1,20 @@
-FROM node:19-alpine
+FROM node:19-alpine AS builder
 
-WORKDIR /app
+WORKDIR /api
 
-COPY package.json .
-COPY package-lock.json .
+COPY package.json package-lock.json ./
+
+RUN npm ci
+
 COPY public public
 COPY src src
 
-RUN npm ci
-RUN npm i serve
-
 RUN npm run build
 
-ENV NODE_ENV production
 
-EXPOSE 3000
 
-CMD ["npx", "serve", "build"]
+FROM node:19-alpine
 
+COPY --from=builder /app/build /app
+
+CMD ["npx", "serve", "/app"]
