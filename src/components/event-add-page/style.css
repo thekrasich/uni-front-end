@@ -1,0 +1,17 @@
+.event-add-text {
+  font-size: 200%;
+  font-family: "Times New Roman", Times, serif;
+}
+.event-add-header-text {
+  font-size: 250%;
+  font-weight: 100;
+  font-family: "Times New Roman", Times, serif;
+  color: rgb(0, 0, 192);
+}
+.event-add-container {
+  margin: 2%;
+}
+.input-container {
+  width: 100px;
+  height: 100px;
+}

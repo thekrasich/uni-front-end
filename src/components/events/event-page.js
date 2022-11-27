@@ -7,6 +7,7 @@ import Pagination from "../ui/pagination/pagination";
 import Modal from "react-modal";
 import Filters from "../ui/filters/filters";
 import { useAuth, logout } from "../../api";
+import { useNavigate } from "react-router-dom";
 
 const EventPage = () => {
   const [events, setEvents] = useState([]);
@@ -15,7 +16,7 @@ const EventPage = () => {
   const [eventsPerPage] = useState(4);
   const [filterModalOpen, setFilterModalOpen] = useState(false);
   const [logged] = useAuth();
-
+  const navigate = useNavigate();
   const customStyles = {
     content: {
       top: "50%",
@@ -39,7 +40,7 @@ const EventPage = () => {
     console.log("Modal closed");
   };
   const addClick =() =>{
-
+    navigate('/Events/AddEvent');
   }
 
   useEffect(() => {
