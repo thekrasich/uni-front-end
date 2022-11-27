@@ -8,10 +8,11 @@ const Registration = () => {
     firstName: "",
     lastName: "",
     email: "",
-    id: "",
+    roleId: "",
+    password: "",
   };
 
-  const [values, setValues] = useState(userInitialValues);
+  const [values] = useState(userInitialValues);
 
   const navigate = useNavigate();
   const emailClick = () => {
@@ -27,9 +28,15 @@ const Registration = () => {
     <div>
       <form className="register-form">
         <p>Вибір варіанту реєстрації: </p>
-        <button className="register-button" onClick = {emailClick}>Email</button>
-        <button className="register-button" onClick={gmailClick}>Google</button>
-        <button className="register-button" onClick={facebookClick}>Facebook</button>
+        <button className="register-button" onClick={emailClick}>
+          Email
+        </button>
+        <button className="register-button" onClick={gmailClick}>
+          Google
+        </button>
+        <button className="register-button" onClick={facebookClick}>
+          Facebook
+        </button>
         <hr></hr>
         <a className="register-link" href="/Rules">
           Правила спільноти
