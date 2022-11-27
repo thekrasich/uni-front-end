@@ -6,6 +6,7 @@ import Events from "../ui/events/events";
 import Pagination from "../ui/pagination/pagination";
 import Modal from "react-modal";
 import Filters from "../ui/filters/filters";
+import { useAuth, logout } from "../../api";
 
 const EventPage = () => {
   const [events, setEvents] = useState([]);
@@ -13,6 +14,7 @@ const EventPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [eventsPerPage] = useState(4);
   const [filterModalOpen, setFilterModalOpen] = useState(false);
+  const [logged] = useAuth();
 
   const customStyles = {
     content: {
@@ -36,6 +38,9 @@ const EventPage = () => {
   const afterFilterModalClose = () => {
     console.log("Modal closed");
   };
+  const addClick =() =>{
+
+  }
 
   useEffect(() => {
     const getEvents = () => {
@@ -62,8 +67,15 @@ const EventPage = () => {
   return (
     <div>
       <Header />
-      <p className="event-text">Назва події</p>
-      <input className="event-input"></input>
+      <p className="event-text">Пошук</p>
+      <input type='search' className="event-input"></input>
+      {logged && (
+        <>
+          <button className="header-button" onClick={addClick}>
+            Добавити подію
+          </button>
+        </>
+      )}
       <img
         onClick={openFilterModal}
         className="filter-logo"
