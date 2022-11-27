@@ -3,62 +3,63 @@ import Select from "react-select";
 import "../event-add-page/style.css";
 import Header from "../ui/header/header";
 import axios from "axios";
+import { authPost } from "../../api";
+import { useNavigate } from "react-router-dom";
+
+const fetchOptions = (endpoint, setter) => axios
+  .get(`http://localhost:3000/api/${endpoint}`)
+  .then(r => setter(r.data.items.map(item => ({ value: item.id, label: item.name }))))
+  .catch(e => console.log(e));
 
 const EventAddPage = () => {
-  const [options, setOptions] = useState([]);
+  const [tagOptions, setTagOptions] = useState([]);
+  const [departmentOptions, setDepartmentOptions] = useState([]);
 
-  const convertToOptions = (tags) => {
-    setOptions(tags.map((tag) => ({ value: tag.id, label: tag.name })));
-    console.log(options);
-  };
+  const [tags, setTags] = useState([]);
+  const [department, setDepartment] = useState(null);
+
+  const { navigate } = useNavigate();
 
   useEffect(() => {
-    const getTags = () => {
-      axios
-        .get("http://localhost:3000/api/tags")
-        .then((response) => {
-          const data = response.data;
-          convertToOptions(data.items);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    };
-    getTags();
+    fetchOptions('tags', setTagOptions);
+    fetchOptions('departments', setDepartmentOptions);
   }, []);
-  const onSubmit = (addevent) => {
-    addevent.preventDefault();
-    const { title, description, departmentId, startsAt, endsAt, tags } =
-      Object.fromEntries(new FormData(addevent.target));
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    const { title, description, startsAt, endsAt, departmentId } =
+      Object.fromEntries(new FormData(e.target));
     const event = {
       title,
       description,
-      departmentId,
+      departmentId: department.value,
       startsAt,
       endsAt,
-      tags,
+      tags: tags.map(tag => tag.value),
     };
+    authPost('events', event)
+      .then(_ => navigate('/Events'));
   };
+
   return (
     <div>
-      <Header />
+      <Header/>
       <form className="event-add-container">
         <p className="event-add-header-text">Створити подію</p>
         <hr></hr>
         <p className="event-add-text">Заголовок</p>
-        <input name="input-container"></input>
+        <input required name="title" className="input-title"></input>
         <p className="event-add-text">Опис</p>
-        <textarea name="input-container"></textarea>
-        <p className="event-add-text">Починається</p>
-        <input type="datetime-local"></input>
-        <p className="event-add-text">Закінчується</p>
-        <input type="datetime-local"></input>
+        <textarea required name="description" className="input-container"></textarea>
+        <p className="event-add-text">Кафедра</p>
+        <Select name="departmentId" required options={departmentOptions} onChange={setDepartment}/>
+        <div className="holding-time"><p className="event-add-text">Починається</p>
+          <input required name="startsAt" type="datetime-local"></input>
+          <p className="event-add-text">Закінчується</p>
+          <input required name="endsAt" type="datetime-local"></input></div>
         <p className="event-add-text">Теги</p>
-        <Select isMulti options={options} />
-        <p className="event-add-text">Відділення</p>
-        <Select options={options} />
-        <p></p>
-        <button onSubmit={onSubmit}>Створити</button>
+        <Select isMulti name="tags" options={tagOptions} onChange={setTags}/>
+        <button className="event-add-button" onSubmit={onSubmit}>Створити</button>
       </form>
     </div>
   );

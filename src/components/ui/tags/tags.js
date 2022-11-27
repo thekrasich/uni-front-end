@@ -1,9 +1,9 @@
-import HexToInt from "../../../unitls/hex-utin";
+import hex2rgb from "../../../utils/hex-utils";
 import "../tags/style.css";
 
 const Tags = ({ tags }) => {
   const setColor = (hex) => {
-    const color = HexToInt(hex);
+    const color = hex2rgb(hex);
     if (color.r * 0.299 + color.g * 0.587 + color.b * 0.114 > 186) {
       return "#000000";
     } else {

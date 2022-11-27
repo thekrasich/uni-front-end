@@ -1,6 +1,6 @@
 FROM node:19-alpine AS builder
 
-WORKDIR /api
+WORKDIR /app
 
 COPY package.json package-lock.json ./
 

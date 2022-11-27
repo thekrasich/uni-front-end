@@ -1,4 +1,4 @@
-import humanizeHoldingTime from "../../../unitls/date-unit";
+import humanizeHoldingTime from "../../../utils/date-utils";
 import "../events/style.css";
 import Tags from "../tags/tags";
 

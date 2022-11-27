@@ -1,7 +1,7 @@
 import axios from 'axios'
 import {createAuthProvider} from "./auth";
 
-const apiURL ='http://localhost:3000/' ||  process.env.API_URL
+const apiURL  = process.env.API_URL || 'http://localhost:3000/'
 
 const ax = axios.create({
   baseURL: apiURL

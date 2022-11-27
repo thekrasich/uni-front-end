@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 
 const createTokenProvider = (tokenStorageKey) => {
 
-  const storageKey = tokenStorageKey || 'FRENT_TOKEN'
+  const storageKey = tokenStorageKey || 'LNU_EVENTS_TOKEN'
 
     let _token = localStorage.getItem(storageKey) || null;
 

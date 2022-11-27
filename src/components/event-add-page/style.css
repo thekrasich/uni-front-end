@@ -9,9 +9,47 @@
   color: rgb(0, 0, 192);
 }
 .event-add-container {
-  margin: 2%;
+  margin: 2% 2% 20%;
 }
+
+.holding-time {
+  display: flex;
+  justify-content: left;
+  margin-top: 2%;
+}
+
+.holding-time p {
+  margin: 10px 10px 10px 0px;
+}
+
+.holding-time input[type=datetime-local] {
+  font-size: 200%;
+  border-radius: 10px;
+  padding: 10px;
+  margin-right: 10px;
+}
+
+.input-title {
+  width: 100%;
+  font-size: 24px;
+}
+
 .input-container {
-  width: 100px;
+  width: 100%;
   height: 100px;
+}
+
+.event-add-button {
+  display: flex;
+  font-size: 40px;
+  margin: 2% auto auto;
+  border-radius: 20px;
+  border-width: 0px;
+  background-color: #002561;
+  color: white;
+  padding: 10px 5%;
+}
+
+.event-add-button:hover {
+  cursor: pointer;
 }
