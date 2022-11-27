@@ -1,4 +1,3 @@
-import {Event, Party} from './models'
 import axios from 'axios'
 import {createAuthProvider} from "./auth";
 
@@ -10,30 +9,12 @@ const ax = axios.create({
 
 export const {useAuth, authGet, authPost, login, logout} = createAuthProvider(ax);
 
-export const getAllEvents = () => authGet("events")
-  .then(r => r.data.items.map(Event))
-  .catch(error => {
-    console.log(error);
-    throw error;
-  });
-
-export const getAllParties = () => authGet("parties")
-  .then(r => r.data.items.map(Party));
-
-export const getEventById = id => {
-  return getAllEvents().then(events => events.find(e => e.id = id));
-};
 
 export const signIn = (email, password) => ax.post(
-  'login',
+  'sign-in',
   {email, password});
 
 export const signUp = user => ax.post(
-  'register',
+  'sign-up',
   user
-);
-
-export const requiredQuery = (i, params) => ax.get(
-  `required-query/${i}`,
-  {params}
 );

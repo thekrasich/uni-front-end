@@ -64,14 +64,14 @@ const RegistrationForm = ({ value }) => {
         <p>Пароль</p>
         <input
           name="password"
-          type="text"
+          type="password"
           className="register-input-field"
           required
         ></input>
         <p>Повторіть Пароль</p>
         <input
           name="passwordAgain"
-          type="text"
+          type="password"
           className="register-input-field"
           required
         ></input>
