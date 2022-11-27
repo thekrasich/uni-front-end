@@ -40,8 +40,7 @@ const EventPage = () => {
       <input className="event-input"></input>
       <img className="filter-logo" src="./filter-logo.webp" alt="Filter" />
       <hr></hr>
-      <Events events={currentEvents} loading ={loading}/>
-      <Pagination eventsPerPage={eventsPerPage} totalEvents = {events.length} paginate ={paginate}/>
+      <Events events={events} loading ={loading}/>
     </div>
   );
 };

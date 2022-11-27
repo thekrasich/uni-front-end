@@ -15,7 +15,7 @@ const Pagination = ({ eventsPerPage, totalEvents, paginate }) => {
           className="page-item"
           onClick={() => {
             paginate(number);
-            window.location.reload(false);
+            
           }}
         >
           {number}
