@@ -22,6 +22,8 @@ const EventPage = () => {
       bottom: "auto",
       marginRight: "-50%",
       transform: "translate(-50%, -50%)",
+      border: "4px solid",
+      borderColor: 'blue',
     },
   };
 
@@ -76,7 +78,9 @@ const EventPage = () => {
         onRequestClose={closeFilterModal}
         style={customStyles}
         contentLabel="Filter Modal"
-      ><Filters/></Modal>
+      >
+        <Filters />
+      </Modal>
     </div>
   );
 };

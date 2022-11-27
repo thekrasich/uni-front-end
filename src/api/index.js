@@ -11,10 +11,10 @@ export const {useAuth, authGet, authPost, login, logout} = createAuthProvider(ax
 
 
 export const signIn = (email, password) => ax.post(
-  'sign-in',
+  'api/auth/sign-in',
   {email, password});
 
 export const signUp = user => ax.post(
-  'sign-up',
+  'api/auth/sign-up',
   user
 );

@@ -30,9 +30,9 @@ const LoginPage = () => {
       <form onSubmit={onSubmit} className="login-form">
         <p>Вхід у систему:</p>
         <p>E-mail: </p>
-        <input className="login-input-field"></input>
+        <input name = 'email' id='email' className="login-input-field"></input>
         <p>Пароль:</p>
-        <input type="password" className="login-input-field"></input>
+        <input name='password' id='password' type="password" className="login-input-field"></input>
         <p></p>
         <button className="login-button">Вхід</button>
         {failed && <p className='login-error-text'>Невірний емейл або пароль.</p>}

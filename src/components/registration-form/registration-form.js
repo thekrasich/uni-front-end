@@ -24,8 +24,11 @@ const RegistrationForm = ({ value }) => {
 
       signUp(user)
         .then((res) => {
-          if (res.status === 200) navigate("/Events");
-          else setFailed(true);
+          if (res.status === 201) {
+            navigate("/Events");
+          } else {
+            setFailed(true);
+          }
         })
         .catch((e) => console.log(e));
     }
@@ -37,7 +40,7 @@ const RegistrationForm = ({ value }) => {
       <form onSubmit={onSubmit} className="register-form">
         <p className="register-header-text">Реєстрація</p>
         <hr></hr>
-        {failed && <p className='register-error-text'>{failed}.</p>}
+        {failed && <p className="register-error-text">{failed}.</p>}
         <p>Ім'я</p>
         <input
           id="firstName"
@@ -67,6 +70,7 @@ const RegistrationForm = ({ value }) => {
           type="password"
           className="register-input-field"
           required
+          minLength="8"
         ></input>
         <p>Повторіть Пароль</p>
         <input
