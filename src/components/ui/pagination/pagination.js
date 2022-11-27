@@ -1,20 +1,27 @@
-const Pagination = ({eventsPerPage, totalEvents, paginate}) => {
-    const pageNumbers = [];
-    for (let index = 1; index <= Math.ceil(totalEvents/eventsPerPage); index++) {
-        pageNumbers.push(index);
-    }
-    return(
-        <nav>
-            <ul className="pagination">
-                {pageNumbers.map(number => (
-                    <li key = {number} className = "page-item">
-                        <p onClick={() => paginate(number)}  className="page-link">
-                            {number}
-                        </p>
-                    </li>
-                ))}
-            </ul>
-        </nav>
-    )
-}
+const Pagination = ({ eventsPerPage, totalEvents, paginate }) => {
+  const pageNumbers = [];
+  for (
+    let index = 1;
+    index <= Math.ceil(totalEvents / eventsPerPage);
+    index++
+  ) {
+    pageNumbers.push(index);
+  }
+  return (
+    <nav>
+      {pageNumbers.map((number) => (
+        <button
+          key={number}
+          className="page-item"
+          onClick={() => {
+            paginate(number);
+            window.location.reload(false);
+          }}
+        >
+          {number}
+        </button>
+      ))}
+    </nav>
+  );
+};
 export default Pagination;

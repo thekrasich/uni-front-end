@@ -9,7 +9,7 @@ const EventPage = () => {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [eventsPerPage] = useState(5);
+  const [eventsPerPage] = useState(4);
 
   useEffect(() => {
     const getEvents = () => {
