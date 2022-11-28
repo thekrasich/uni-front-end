@@ -52,8 +52,12 @@ const FacultiesPage = () => {
               {faculty.departments.map((dep) => (
                 <div>
                   <div className="faculty-container">
-                    <img src={dep.imageUrl} alt = 'depContainer' />
-                    <p>
+                    <img
+                      className="dep-image-container"
+                      src={dep.imageUrl}
+                      alt="depContainer"
+                    />
+                    <p className="department-text">
                       <p>{dep.name}</p> <p>{dep.email}</p>
                     </p>
                   </div>
