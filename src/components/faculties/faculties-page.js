@@ -15,7 +15,6 @@ const FacultiesPage = () => {
         .then((response) => {
           const data = response.data;
           setFaculties(data);
-          console.log(data);
         })
         .catch((error) => {
           console.log(error);
@@ -36,7 +35,7 @@ const FacultiesPage = () => {
             />
             <p className="faculty-text">
               <p>{faculty.name}</p> <p>{faculty.address}</p>
-              <p>{faculty.email}</p> <p>{faculty.phone}</p>
+              <a href={faculty.email}>{faculty.email}</a> <p>{faculty.phone}</p>
               <a href={faculty.url}>{faculty.url}</a>
             </p>
           </div>
@@ -46,7 +45,7 @@ const FacultiesPage = () => {
               aria-controls="panel1content"
               expandIcon={<ExpandMore />}
             >
-              <p>Кафедри</p>
+              <p className="dep-text">Кафедри</p>
             </AccordionSummary>
             <AccordionDetails>
               {faculty.departments.map((dep) => (
@@ -58,7 +57,7 @@ const FacultiesPage = () => {
                       alt="depContainer"
                     />
                     <p className="department-text">
-                      <p>{dep.name}</p> <p>{dep.email}</p>
+                      <p>{dep.name}</p> <a href={dep.email}>{dep.email}</a>
                     </p>
                   </div>
                   <hr></hr>

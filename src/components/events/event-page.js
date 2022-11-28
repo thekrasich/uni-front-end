@@ -63,7 +63,20 @@ const EventPage = () => {
   const indexOfLastEvent = currentPage * eventsPerPage;
   const indexOfFirstEVent = indexOfLastEvent - eventsPerPage;
   const currentEvents = events.slice(indexOfFirstEVent, indexOfLastEvent);
+
   const applyButtonClick = () =>{
+    const startDate = document.getElementById('start').value;
+    const endDate = document.getElementById('end').value;
+    axios
+        .get("http://localhost:3000/api/events/", {params: {from: startDate, to: endDate}})
+        .then((response) => {
+          const data = response.data;
+          setEvents(data.items);
+          setLoading(false);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     setFilterModalOpen(false);
   }
   return (
@@ -100,9 +113,9 @@ const EventPage = () => {
           <p className="filter-header-text">Фільтри</p>
           <hr></hr>
           <p className="filter-text">Початок Події</p>
-          <input type="datetime-local"></input>
+          <input name="start" id="start" type="datetime-local"></input>
           <p className="filter-text">Кінець Події</p>
-          <input type="datetime-local"></input>
+          <input name="end" id="end" type="datetime-local"></input>
           <p></p>
           <button onClick={applyButtonClick} name="filter-button">
             Застосувати
