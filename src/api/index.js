@@ -1,9 +1,9 @@
 import axios from 'axios'
 import {createAuthProvider} from "./auth";
 
-const apiURL  = process.env.API_URL || 'http://localhost:3000/'
+const apiURL  = process.env.API_URL || 'http://localhost:3000/api/'
 
-const ax = axios.create({
+export const ax = axios.create({
   baseURL: apiURL
 })
 
@@ -11,10 +11,10 @@ export const {useAuth, authGet, authPost, login, logout} = createAuthProvider(ax
 
 
 export const signIn = (email, password) => ax.post(
-  'api/auth/sign-in',
+  'auth/sign-in',
   {email, password});
 
 export const signUp = user => ax.post(
-  'api/auth/sign-up',
+  'auth/sign-up',
   user
 );

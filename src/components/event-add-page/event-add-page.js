@@ -2,12 +2,11 @@ import { useEffect, useState } from "react";
 import Select from "react-select";
 import "../event-add-page/style.css";
 import Header from "../ui/header/header";
-import axios from "axios";
-import { authPost } from "../../api";
+import { ax, authPost } from "../../api";
 import { useNavigate } from "react-router-dom";
 
-const fetchOptions = (endpoint, setter) => axios
-  .get(`http://localhost:3000/api/${endpoint}`)
+const fetchOptions = (endpoint, setter) => ax
+  .get(endpoint)
   .then(r => setter(r.data.items.map(item => ({ value: item.id, label: item.name }))))
   .catch(e => console.log(e));
 
@@ -43,7 +42,7 @@ const EventAddPage = () => {
   return (
     <div>
       <Header/>
-      <form className="event-add-container">
+      <form className="event-add-container" onSubmit={onSubmit}>
         <p className="event-add-header-text">Створити подію</p>
         <hr></hr>
         <p className="event-add-text">Заголовок</p>
@@ -58,7 +57,7 @@ const EventAddPage = () => {
           <input required name="endsAt" type="datetime-local"></input></div>
         <p className="event-add-text">Теги</p>
         <Select isMulti name="tags" options={tagOptions} onChange={setTags}/>
-        <button className="event-add-button" onSubmit={onSubmit}>Створити</button>
+        <input type="submit" className="event-add-button" value="Створити"/>
       </form>
     </div>
   );

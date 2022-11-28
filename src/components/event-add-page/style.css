@@ -12,6 +12,13 @@
   margin: 2% 2% 20%;
 }
 
+@media screen and (min-width: 1024px) {
+  .event-add-container {
+    margin: 2% 10% 20% 10%;
+  }
+
+}
+
 .holding-time {
   display: flex;
   justify-content: left;
@@ -23,7 +30,7 @@
 }
 
 .holding-time input[type=datetime-local] {
-  font-size: 200%;
+  font-size: 150%;
   border-radius: 10px;
   padding: 10px;
   margin-right: 10px;
@@ -43,7 +50,7 @@
   display: flex;
   font-size: 40px;
   margin: 2% auto auto;
-  border-radius: 20px;
+  border-radius: 40px;
   border-width: 0px;
   background-color: #002561;
   color: white;
