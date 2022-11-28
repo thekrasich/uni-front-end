@@ -2,8 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../login-page/style.css";
 import Header from "../ui/header/header";
-import { signIn } from "../../api";
-import { login } from "../../api";
+import { signIn, login } from "../../api";
 
 const LoginPage = () => {
   const [failed, setFailed] = useState(false);

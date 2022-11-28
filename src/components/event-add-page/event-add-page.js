@@ -17,7 +17,7 @@ const EventAddPage = () => {
   const [tags, setTags] = useState([]);
   const [department, setDepartment] = useState([]);
 
-  const { navigate } = useNavigate();
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchOptions('tags', setTagOptions);
@@ -26,7 +26,7 @@ const EventAddPage = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    const { title, description, startsAt, endsAt, departmentId } =
+    const { title, description, startsAt, endsAt } =
       Object.fromEntries(new FormData(e.target));
     const event = {
       title,
@@ -37,7 +37,9 @@ const EventAddPage = () => {
       tags: tags.map(tag => tag.value),
     };
     console.log(event);
-    authPost('events', event);
+    authPost('events', event)
+      .then(navigate('/Events'))
+      .catch(e => alert(e));
   };
   return (
     <div>
@@ -56,7 +58,7 @@ const EventAddPage = () => {
           <p className="event-add-text">Закінчується</p>
           <input required name="endsAt" type="datetime-local"></input></div>
         <p className="event-add-text">Теги</p>
-        <Select isMulti name="tags" options={tagOptions} onChange={setTags}/>
+        <Select isMulti closeMenuOnSelect={false} name="tags" options={tagOptions} onChange={setTags}/>
         <input type="submit" className="event-add-button" value="Створити"/>
       </form>
     </div>

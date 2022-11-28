@@ -1,17 +1,17 @@
 import { ExpandMore } from "@mui/icons-material";
 import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
-import axios from "axios";
 import { useEffect, useState } from "react";
 import Header from "../ui/header/header";
 import "../faculties/style.css";
+import { ax } from "../../api";
 
 const FacultiesPage = () => {
   const [faculties, setFaculties] = useState([]);
 
   useEffect(() => {
     const getFaculties = () => {
-      axios
-        .get("http://localhost:3000/api/faculties")
+      ax
+        .get("faculties")
         .then((response) => {
           const data = response.data;
           setFaculties(data);
@@ -34,9 +34,11 @@ const FacultiesPage = () => {
               alt="faculty_image"
             />
             <p className="faculty-text">
-              <p>{faculty.name}</p> <p>{faculty.address}</p>
-              <a href={faculty.email}>{faculty.email}</a> <p>{faculty.phone}</p>
-              <a href={faculty.url}>{faculty.url}</a>
+              <p>{faculty.name}</p>
+              <p>{faculty.address}</p>
+              <a href={`mailto:${faculty.email}`}>{faculty.email}</a>
+              <p>{faculty.phone}</p>
+              <a href={faculty.url}>{faculty.url.replace(/^https?:\/\//, '').replace('/$', '')}</a>
             </p>
           </div>
           <Accordion>

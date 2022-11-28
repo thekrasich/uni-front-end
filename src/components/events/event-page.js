@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Events from "../ui/events/events";
 import Modal from "react-modal";
-import { useAuth } from "../../api";
+import { ax, useAuth } from "../../api";
 import { useNavigate } from "react-router-dom";
 import Pagination from "../ui/pagination/pagination";
 
@@ -46,8 +46,8 @@ const EventPage = () => {
   useEffect(() => {
     const getEvents = () => {
       setLoading(true);
-      axios
-        .get("http://localhost:3000/api/events")
+      ax
+        .get("events")
         .then((response) => {
           const data = response.data;
           setEvents(data.items);
@@ -67,8 +67,8 @@ const EventPage = () => {
   const applyButtonClick = () =>{
     const startDate = document.getElementById('start').value;
     const endDate = document.getElementById('end').value;
-    axios
-        .get("http://localhost:3000/api/events/", {params: {from: startDate, to: endDate}})
+    ax
+        .get("events", {params: {from: startDate, to: endDate}})
         .then((response) => {
           const data = response.data;
           setEvents(data.items);
@@ -85,7 +85,7 @@ const EventPage = () => {
       {logged && (
         <>
           <button className="header-button" onClick={addClick}>
-            Добавити подію
+            Додати подію
           </button>
         </>
       )}
