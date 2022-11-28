@@ -1,3 +1,5 @@
+import '../pagination/style.css'
+
 const Pagination = ({ eventsPerPage, totalEvents, paginate }) => {
   const pageNumbers = [];
   for (
@@ -8,11 +10,11 @@ const Pagination = ({ eventsPerPage, totalEvents, paginate }) => {
     pageNumbers.push(index);
   }
   return (
-    <nav>
+    <nav className="pagination-container">
       {pageNumbers.map((number) => (
         <button
           key={number}
-          className="page-item"
+          className="pagination-button"
           onClick={() => {
             paginate(number);
             

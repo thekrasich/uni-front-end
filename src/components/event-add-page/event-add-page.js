@@ -16,7 +16,7 @@ const EventAddPage = () => {
   const [departmentOptions, setDepartmentOptions] = useState([]);
 
   const [tags, setTags] = useState([]);
-  const [department, setDepartment] = useState(null);
+  const [department, setDepartment] = useState([]);
 
   const { navigate } = useNavigate();
 
@@ -37,10 +37,9 @@ const EventAddPage = () => {
       endsAt,
       tags: tags.map(tag => tag.value),
     };
-    authPost('events', event)
-      .then(_ => navigate('/Events'));
+    console.log(event);
+    authPost('events', event);
   };
-
   return (
     <div>
       <Header/>

@@ -3,18 +3,19 @@ import "../events/style.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Events from "../ui/events/events";
-import Pagination from "../ui/pagination/pagination";
 import Modal from "react-modal";
 import Filters from "../ui/filters/filters";
-import { useAuth, logout } from "../../api";
+import { useAuth } from "../../api";
 import { useNavigate } from "react-router-dom";
+import Pagination from "../ui/pagination/pagination";
 
 const EventPage = () => {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [eventsPerPage] = useState(4);
+  const [eventsPerPage] = useState(10);
   const [filterModalOpen, setFilterModalOpen] = useState(false);
+
   const [logged] = useAuth();
   const navigate = useNavigate();
   const customStyles = {
@@ -26,7 +27,7 @@ const EventPage = () => {
       marginRight: "-50%",
       transform: "translate(-50%, -50%)",
       border: "4px solid",
-      borderColor: 'blue',
+      borderColor: "blue",
     },
   };
 
@@ -39,9 +40,9 @@ const EventPage = () => {
   const afterFilterModalClose = () => {
     console.log("Modal closed");
   };
-  const addClick =() =>{
-    navigate('/Events/AddEvent');
-  }
+  const addClick = () => {
+    navigate("/Events/AddEvent");
+  };
 
   useEffect(() => {
     const getEvents = () => {
@@ -59,17 +60,14 @@ const EventPage = () => {
     };
     getEvents();
   }, []);
+  
   const indexOfLastEvent = currentPage * eventsPerPage;
   const indexOfFirstEVent = indexOfLastEvent - eventsPerPage;
   const currentEvents = events.slice(indexOfFirstEVent, indexOfLastEvent);
-
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
-
+  
   return (
     <div>
       <Header />
-      <p className="event-text">Пошук</p>
-      <input type='search' className="event-input"></input>
       {logged && (
         <>
           <button className="header-button" onClick={addClick}>
@@ -84,7 +82,8 @@ const EventPage = () => {
         alt="Filter"
       />
       <hr></hr>
-      <Events events={events} loading={loading} />
+      <Events events={currentEvents} loading={loading} />
+      <Pagination eventsPerPage ={eventsPerPage} totalEvents ={events.length} paginate = {setCurrentPage}/>
       <Modal
         isOpen={filterModalOpen}
         onAfterOpen={afterFilterModalClose}

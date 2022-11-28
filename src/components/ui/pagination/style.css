@@ -1,0 +1,15 @@
+.pagination-container{
+    align-items: center;
+}
+.pagination-button{
+    background-color: rgb(255, 255, 255);
+    border-color: blue;
+    background-color: white;
+    width: 3%;
+    height: 50px;
+    border-radius: 100%;
+    align-self: center;
+    align-items: center;
+    cursor: pointer;
+    margin-left: 25%;
+}
