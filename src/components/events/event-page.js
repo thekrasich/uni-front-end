@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Events from "../ui/events/events";
 import Modal from "react-modal";
-import Filters from "../ui/filters/filters";
 import { useAuth } from "../../api";
 import { useNavigate } from "react-router-dom";
 import Pagination from "../ui/pagination/pagination";
@@ -60,11 +59,13 @@ const EventPage = () => {
     };
     getEvents();
   }, []);
-  
+
   const indexOfLastEvent = currentPage * eventsPerPage;
   const indexOfFirstEVent = indexOfLastEvent - eventsPerPage;
   const currentEvents = events.slice(indexOfFirstEVent, indexOfLastEvent);
-  
+  const applyButtonClick = () =>{
+    setFilterModalOpen(false);
+  }
   return (
     <div>
       <Header />
@@ -83,7 +84,11 @@ const EventPage = () => {
       />
       <hr></hr>
       <Events events={currentEvents} loading={loading} />
-      <Pagination eventsPerPage ={eventsPerPage} totalEvents ={events.length} paginate = {setCurrentPage}/>
+      <Pagination
+        eventsPerPage={eventsPerPage}
+        totalEvents={events.length}
+        paginate={setCurrentPage}
+      />
       <Modal
         isOpen={filterModalOpen}
         onAfterOpen={afterFilterModalClose}
@@ -91,7 +96,18 @@ const EventPage = () => {
         style={customStyles}
         contentLabel="Filter Modal"
       >
-        <Filters />
+        <div>
+          <p className="filter-header-text">Фільтри</p>
+          <hr></hr>
+          <p className="filter-text">Початок Події</p>
+          <input type="datetime-local"></input>
+          <p className="filter-text">Кінець Події</p>
+          <input type="datetime-local"></input>
+          <p></p>
+          <button onClick={applyButtonClick} name="filter-button">
+            Застосувати
+          </button>
+        </div>
       </Modal>
     </div>
   );

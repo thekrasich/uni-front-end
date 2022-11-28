@@ -31,6 +31,7 @@ const Events = ({ events, loading }) => {
             )}
           </p>
           <hr></hr>
+          <img src={event.imageUrl} alt="event_image"/>
           <p className="event-container-text" key={event.id}>
             {event.description}
           </p>

@@ -1,6 +1,9 @@
 import "../filters/style.css";
 
-const Filters = () => {
+const Filters = ({modalStatus}) => {
+  const applyButtonClick = () =>{
+    modalStatus = false;
+  }
   return (
     <div>
       <p className="filter-header-text">Фільтри</p>
@@ -10,7 +13,7 @@ const Filters = () => {
        <p className="filter-text">Кінець Події</p>
        <input type='datetime-local'></input>
        <p></p>
-      <button name="filter-button">Застосувати</button>
+      <button onClick={applyButtonClick} name="filter-button">Застосувати</button>
     </div>
   );
 };
