@@ -35,6 +35,9 @@ const Events = ({ events, loading }) => {
           <p className="event-container-text" key={event.id}>
             {event.description}
           </p>
+          <p className="event-container-text" key={event.id}>
+            Кафедра: {event.department.name} ({event.department.faculty.name})
+          </p>
           <Tags tags={event.tags} />
           <p></p>
         </div>
