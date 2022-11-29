@@ -1,7 +1,6 @@
 import Header from "../ui/header/header";
 import "../events/style.css";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import Events from "../ui/events/events";
 import Modal from "react-modal";
 import { ax, useAuth } from "../../api";
