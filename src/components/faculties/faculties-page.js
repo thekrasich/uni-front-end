@@ -59,7 +59,9 @@ const FacultiesPage = () => {
                       alt="depContainer"
                     />
                     <p className="department-text">
-                      <p>{dep.name}</p> <a href={dep.email}>{dep.email}</a>
+                      <a href={dep.url}>{dep.name}</a>
+                      <p>{dep.phone}</p>
+                      <a href={`mailto:${dep.email}`}>{dep.email}</a>
                     </p>
                   </div>
                   <hr></hr>
